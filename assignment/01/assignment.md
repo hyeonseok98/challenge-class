@@ -4,8 +4,10 @@
 
 - 리액트는 UI 제작을 도와주는 라이브러리
 - 리액트는 매우 가벼운 라이브러리이기 때문에, 반드시 CRA나 Vite 등을 사용하지 않아도 cdn을 활용해 몇 줄의 코드로도 사용할 수 있다.
-  > ❗ 그럼 왜 우리가 생각하는 React는 이렇게 가볍지 않을까?
-  > => 리액트로 대형 어플을 제작하기 위해서, 만드는 환경은 node 환경을 사용하기 때문. 로컬에서 Javascript를 실행하는 환경을 구축하고 실행함
+> ❗ 그럼 왜 우리가 생각하는 React는 이렇게 가볍지 않을까?
+> => 리액트로 대형 어플을 제작하기 위해서, 만드는 환경은 node 환경을 사용하기 때문. 로컬에서 Javascript를 실행하는 환경을 구축하고 실행함
+
+<br />
 
 ### ※ React의 등장 배경
 
@@ -20,14 +22,14 @@
 
 ## ✅ 02. React를 사용한 웹 개발과 기존 웹 개발의 차이점
 
-### 🏷️ MPA → SPA
+### ※ MPA → SPA
 
 - 전통적 웹 개발 방식은 MPA(Multi Page Application)을 제작
 - 리액트의 경우 SPA(Single Page Application)을 제작
   > ※ SPA: 한 번의 페이지 로드만으로 웹 서비스에 필요한 모든 콘텐츠를 동적으로 렌더링 하는 방식으로,
   > 사용자와 필요한 부분만 상호작용하여 전체 페이지가 리렌더링 되는 것이 아닌 필요한 데이터 부분만 주고받을 수 있음.
 
-### 🏷️ SSR → CSR
+### ※ SSR → CSR
 
 - 전통적 웹 개발 방식은 SSR(Server Side Rendering) 방식
 - 리액트는 CSR(Client Side Rendering) 방식
@@ -55,11 +57,11 @@
 ```
 
 - JSX는 React의 createElement 함수 호출을 직관적으로 표현해주는 문법적 편의를 제공함(아래 사진의 위/아래는 같은 결과)
-  <img src="./img/HTML vs JSX.png" alt="virtual dom" width="700px">
+  <img src="./img/HTML vs JSX.png" alt="virtual dom" width="500px">
 
 <br />
 
-### 🔎 JSX의 특징
+### ※ JSX의 특징
 
 1. **HTML과 유사한 문법**: HTML과 비슷하게 생겨서 익숙하고 읽기 쉬움
 2. **Javascript와의 결합**: JSX 내에서 JS 표현식은 중괄호`{}`로 묶어 사용할 수 있으며, 이를 통해 데이터 바인딩이나 반복문 처리가 가능함
