@@ -1,0 +1,21 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-bg: #c9d6ea;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body,
+html {
+  height: 100vh;
+}
