@@ -1,10 +1,10 @@
 import grass from "@/assets/grass.png";
 import Field from "./Field";
 
-export default function Layout({ children, mapSize, pikachuSize }) {
+export default function Layout({ children }) {
   return (
     <>
-      <Field texture={grass} mapSize={mapSize} pikachuSize={pikachuSize} />
+      <Field texture={grass} />
       {children}
     </>
   );

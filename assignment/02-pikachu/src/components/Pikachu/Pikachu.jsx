@@ -1,28 +1,75 @@
 import pikachu from "@/assets/pikachu.png";
+import { MAP_SIZE, PIKACHU_SIZE } from "@/config.js";
 import { useEffect, useMemo, useState } from "react";
 import styles from "./Pikachu.module.css";
 
 // 피카츄의 이동 담당 컴포넌트(상,하,좌,우 이동 및 점프 기능)
-export default function Pikachu({ mapSize, pikachuSize }) {
+export default function Pikachu() {
   // Map 반경 계산
   const mapArea = useMemo(() => {
-    const MAP_TOP = Math.ceil((window.innerHeight - mapSize) / 2);
-    const MAP_BOTTOM =
-      Math.ceil((window.innerHeight + mapSize) / 2) - pikachuSize;
-    const MAP_RIGHT = Math.ceil(window.innerWidth + mapSize) / 2 - pikachuSize;
-    const MAP_LEFT = Math.ceil((window.innerWidth - mapSize) / 2);
+    const top = Math.ceil((window.innerHeight - MAP_SIZE) / 2);
+    const bottom =
+      Math.ceil((window.innerHeight + MAP_SIZE) / 2) - PIKACHU_SIZE;
+    const right = Math.ceil(window.innerWidth + MAP_SIZE) / 2 - PIKACHU_SIZE;
+    const left = Math.ceil((window.innerWidth - MAP_SIZE) / 2);
 
     return {
-      top: MAP_TOP,
-      bottom: MAP_BOTTOM,
-      right: MAP_RIGHT,
-      left: MAP_LEFT,
+      top,
+      bottom,
+      right,
+      left,
     };
   }, []);
 
   const [position, setPosition] = useState({ x: mapArea.left, y: mapArea.top });
   const [isJumping, setIsJumping] = useState(false);
   const [isRightDirection, setIsRightDirection] = useState(true);
+
+  const handleCharacter = (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        setPosition((prev) => ({
+          ...prev,
+          y: Math.max(prev.y - PIKACHU_SIZE, mapArea.top),
+        }));
+        break;
+      case "ArrowDown":
+        setPosition((prev) => ({
+          ...prev,
+          y: Math.min(prev.y + PIKACHU_SIZE, mapArea.bottom),
+        }));
+        break;
+      case "ArrowRight":
+        setPosition((prev) => ({
+          ...prev,
+          x: Math.min(prev.x + PIKACHU_SIZE, mapArea.right),
+        }));
+        setIsRightDirection(true);
+        break;
+      case "ArrowLeft":
+        setPosition((prev) => ({
+          ...prev,
+          x: Math.max(prev.x - PIKACHU_SIZE, mapArea.left),
+        }));
+        setIsRightDirection(false);
+        break;
+      case " ":
+        event.preventDefault();
+        if (isJumping || position.y <= mapArea.top) {
+          return;
+        }
+        setIsJumping((isJumping) => !isJumping);
+        setPosition((prev) => ({ ...prev, y: prev.y - PIKACHU_SIZE }));
+        setTimeout(() => {
+          setIsJumping((isJumping) => !isJumping);
+
+          setPosition((prev) => ({ ...prev, y: prev.y + PIKACHU_SIZE }));
+        }, 200);
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", handleCharacter);
@@ -32,53 +79,11 @@ export default function Pikachu({ mapSize, pikachuSize }) {
     };
   }, [position]);
 
-  const handleCharacter = (event) => {
-    switch (event.key) {
-      case "ArrowUp":
-        setPosition((prev) => ({
-          ...prev,
-          y: Math.max(prev.y - pikachuSize, mapArea.top),
-        }));
-        break;
-      case "ArrowDown":
-        setPosition((prev) => ({
-          ...prev,
-          y: Math.min(prev.y + pikachuSize, mapArea.bottom),
-        }));
-        break;
-      case "ArrowRight":
-        setPosition((prev) => ({
-          ...prev,
-          x: Math.min(prev.x + pikachuSize, mapArea.right),
-        }));
-        setIsRightDirection(true);
-        break;
-      case "ArrowLeft":
-        setPosition((prev) => ({
-          ...prev,
-          x: Math.max(prev.x - pikachuSize, mapArea.left),
-        }));
-        setIsRightDirection(false);
-        break;
-      case " ":
-        if (isJumping || mapArea.top > position.y - pikachuSize) return;
-        setIsJumping(true);
-        setPosition((prev) => ({ ...prev, y: prev.y - pikachuSize }));
-        setTimeout(() => {
-          setIsJumping(false);
-          setPosition((prev) => ({ ...prev, y: prev.y + pikachuSize }));
-        }, 200);
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div
       style={{
-        width: `${pikachuSize}px`,
-        height: `${pikachuSize}px`,
+        width: `${PIKACHU_SIZE}px`,
+        height: `${PIKACHU_SIZE}px`,
         backgroundImage: `url(${pikachu})`,
         top: `${position.y}px`,
         left: `${position.x}px`,
