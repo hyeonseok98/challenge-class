@@ -1,4 +1,34 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useMemoLists } from "../../redux/config/hook/useMemoLists";
+import { editMemo } from "../../redux/reducer/memo.reducer";
+
+export default function WriteMemo() {
+  const dispatch = useDispatch();
+  const { memoLists, selectedId } = useMemoLists();
+  const { time, content } = memoLists.find(({ id }) => id === selectedId) || {};
+  const [currentMemo, setCurrentMemo] = useState(content);
+
+  useEffect(() => {
+    setCurrentMemo(content);
+  }, [content]);
+
+  const handleChangeMemo = (e) => {
+    setCurrentMemo(e.target.value);
+    dispatch(editMemo({ id: selectedId, content: e.target.value }));
+  };
+
+  return (
+    <StyledArticle>
+      <DateSpan>{time}</DateSpan>
+      <StyledTextarea
+        value={currentMemo}
+        onChange={handleChangeMemo}
+      ></StyledTextarea>
+    </StyledArticle>
+  );
+}
 
 const StyledArticle = styled.article`
   display: flex;
@@ -21,29 +51,3 @@ const StyledTextarea = styled.textarea`
   font-size: 1.5rem;
   line-height: 1.66;
 `;
-
-export default function WriteMemo() {
-  return (
-    <StyledArticle>
-      <DateSpan>{getDate()}</DateSpan>
-      <StyledTextarea></StyledTextarea>
-    </StyledArticle>
-  );
-}
-
-function getDate() {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth() + 1;
-  const date = currentDate.getDate();
-  const hours = currentDate.getHours();
-  const minutes = currentDate.getMinutes();
-
-  const timeCycle = hours >= 12 ? "오후" : "오전";
-  const divideHour = hours % 12 || 12;
-  const formattedMinute = String(minutes).padStart(2, "0");
-
-  let dateTime = `${year}년 ${month}월 ${date}일 ${timeCycle} ${divideHour}:${formattedMinute}`;
-
-  return dateTime;
-}

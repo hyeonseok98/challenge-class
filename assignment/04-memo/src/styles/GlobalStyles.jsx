@@ -25,8 +25,10 @@ const GlobalStyles = createGlobalStyle`
 
   --text-grey: #808080;
   --text-black: #121212;
+  --time-black: ##1a1a1a;
 
   --border-grey: #e6e6e6;
+  --background-white: #ffffff;
 }
 
 
