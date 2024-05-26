@@ -49,6 +49,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
+  border-top-left-radius: 10px;
   border-bottom: 1px solid var(--border-grey);
   background-color: var(--background-white);
 `;

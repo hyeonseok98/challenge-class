@@ -45,7 +45,6 @@ const StyledUl = styled.ul`
   align-items: flex-start;
   padding: 20px 12px;
   row-gap: 8px;
-  overflow-x: hidden;
 `;
 
 const StyledLi = styled.li`
@@ -63,11 +62,11 @@ const StyledLi = styled.li`
 `;
 
 const H6 = styled.h6`
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  overflow: hidden;
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 2px;

@@ -45,6 +45,7 @@ const initialState = {
   ],
   selectedId: uniqueId,
 };
+
 function memoReducer(prevState = initialState, action) {
   switch (action.type) {
     case ADD_MEMO:
