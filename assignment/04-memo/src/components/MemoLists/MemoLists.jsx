@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { styled } from "styled-components";
-import { useMemoLists } from "../../redux/config/hook/useMemoLists";
+import { useMemoLists } from "../../redux/reducer/hook/useMemoLists";
 import { selectedMemo } from "../../redux/reducer/memo.reducer";
 import Header from "../Header/Header";
 

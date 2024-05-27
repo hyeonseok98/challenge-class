@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { useMemoLists } from "../../redux/config/hook/useMemoLists";
+import { useMemoLists } from "../../redux/reducer/hook/useMemoLists";
 import { editMemo } from "../../redux/reducer/memo.reducer";
 
 export default function WriteMemo() {

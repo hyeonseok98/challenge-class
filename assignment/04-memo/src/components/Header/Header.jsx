@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { useMemoLists } from "../../redux/config/hook/useMemoLists";
+import { useMemoLists } from "../../redux/reducer/hook/useMemoLists";
 import { addMemo, deleteMemo } from "../../redux/reducer/memo.reducer";
 import getDate from "../../utils/getDate";
 
@@ -27,6 +27,7 @@ export default function Header() {
 
     dispatch(deleteMemo(selectedId));
   };
+
   return (
     <StyledHeader>
       <StyledBtn onClick={handleAddMemo}>새 메모 작성하기</StyledBtn>
