@@ -8,13 +8,15 @@ export default function WriteMemo() {
   const dispatch = useDispatch();
   const memoRef = useRef(null);
   const { memoLists, selectedId } = useMemoLists();
-  const { time } = memoLists.find(({ id }) => id === selectedId) || {};
+  const selectedMemo = memoLists.find(({ id }) => id === selectedId) || {};
+  const { time, content } = selectedMemo;
 
   useEffect(() => {
-    memoRef.current.focus();
-    memoRef.current.value = memoLists.content || "";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedId]);
+    if (memoRef.current) {
+      memoRef.current.focus();
+      memoRef.current.value = content || "";
+    }
+  }, [selectedId, content]);
 
   const handleChangeMemo = (e) => {
     dispatch(editMemo({ id: selectedId, content: e.target.value }));
