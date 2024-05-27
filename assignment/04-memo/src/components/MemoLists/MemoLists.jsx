@@ -35,6 +35,7 @@ export default function MemoLists() {
 }
 
 const StyledAside = styled.aside`
+  height: 100%;
   border-right: 1px solid var(--border-grey);
   overflow-y: auto;
 `;

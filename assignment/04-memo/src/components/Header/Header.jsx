@@ -30,14 +30,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <StyledBtn onClick={handleAddMemo}>새 메모 작성하기</StyledBtn>
-      <StyledBtn
-        onClick={(e) => {
-          e.stopPropagation();
-          handledeleteMemo();
-        }}
-      >
-        삭제
-      </StyledBtn>
+      <StyledBtn onClick={handledeleteMemo}>삭제</StyledBtn>
     </StyledHeader>
   );
 }

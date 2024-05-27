@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useMemoLists } from "../../redux/config/hook/useMemoLists";
@@ -6,26 +6,24 @@ import { editMemo } from "../../redux/reducer/memo.reducer";
 
 export default function WriteMemo() {
   const dispatch = useDispatch();
+  const memoRef = useRef(null);
   const { memoLists, selectedId } = useMemoLists();
-  const { time, content } = memoLists.find(({ id }) => id === selectedId) || {};
-  const [currentMemo, setCurrentMemo] = useState(content);
+  const { time } = memoLists.find(({ id }) => id === selectedId) || {};
 
   useEffect(() => {
-    setCurrentMemo(content);
-  }, [content]);
+    memoRef.current.focus();
+    memoRef.current.value = memoLists.content || "";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
 
   const handleChangeMemo = (e) => {
-    setCurrentMemo(e.target.value);
     dispatch(editMemo({ id: selectedId, content: e.target.value }));
   };
 
   return (
     <StyledArticle>
       <DateSpan>{time}</DateSpan>
-      <StyledTextarea
-        value={currentMemo}
-        onChange={handleChangeMemo}
-      ></StyledTextarea>
+      <StyledTextarea ref={memoRef} onChange={handleChangeMemo} />
     </StyledArticle>
   );
 }
