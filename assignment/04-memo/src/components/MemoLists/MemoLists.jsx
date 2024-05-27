@@ -54,7 +54,7 @@ const StyledLi = styled.li`
   width: 100%;
   height: 56px;
   border-radius: 4px;
-  padding: 12px 24px;
+  padding: 12px 12px 12px 24px;
   background-color: ${(props) => (props.selected ? "#FFE07F" : "transparent")};
   cursor: pointer;
 
