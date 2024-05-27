@@ -37,15 +37,17 @@ export default function MemoLists() {
 const StyledAside = styled.aside`
   height: 100%;
   border-right: 1px solid var(--border-grey);
-  overflow-y: auto;
 `;
 
 const StyledUl = styled.ul`
+  max-height: 440px;
   display: grid;
   grid-template-columns: 1fr;
   align-items: flex-start;
-  padding: 20px 12px;
+  padding: 20px 12px 0px 12px;
   row-gap: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const StyledLi = styled.li`
@@ -63,11 +65,10 @@ const StyledLi = styled.li`
 `;
 
 const H6 = styled.h6`
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  width: 160px;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 2px;
