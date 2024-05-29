@@ -16,7 +16,7 @@ export default function Button() {
   return (
     <>
       <button onClick={logIn}>로그인하기</button>
-      <button onClick={logOut}>로그인하기</button>
+      <button onClick={logOut}>로그아웃하기</button>
     </>
   );
 }
