@@ -15,7 +15,7 @@ function counterReudcer(state, action) {
   if (action === "진영나이바꾸기") {
     // immer를 사용하지 않으면 이렇게 길~게 써야함.
     // const newState = {...state, school: {...state.school, class: {...state.school.class, students:state.school.class.students.map(student => student)~.등등 }}};
-    
+
     // 두번째 인자를 관습적으로 레시피라 부름
     const newState = produce(state, (draft) => {
       draft.school.class.students.find((student) => student.name === "진영");
