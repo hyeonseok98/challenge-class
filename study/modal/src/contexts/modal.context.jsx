@@ -11,7 +11,7 @@ const initialValue = () => {
   close: () => {};
 };
 
-const ModalContext = createContext();
+const ModalContext = createContext(initialValue);
 
 export const useModal = () => useContext(ModalContext);
 
