@@ -15,12 +15,12 @@ function App() {
 
   const setValidCheck = (title, content, exposureTime) => {
     if (!title || !content) {
-      alert("제목과 내용을 모두 입력해 주세요.");
+      alert("제목과 내용을 모두 빈칸없이 입력해 주세요.");
       return false;
     }
 
-    if (isNaN(exposureTime) || exposureTime < 1) {
-      alert("1 이상의 유효한 숫자만 입력해주세요.");
+    if (isNaN(exposureTime) || exposureTime < 0) {
+      alert("0 이상의 유효한 숫자만 입력해주세요.");
       return false;
     }
 
@@ -28,15 +28,17 @@ function App() {
   };
 
   const handleToastButton = () => {
-    const title = titleRef.current.value;
-    const content = contentRef.current.value;
-    const exposureTime = parseInt(timeRef.current.value, 10);
+    const title = titleRef.current.value.trim();
+    const content = contentRef.current.value.trim();
+    const exposureTime = timeRef.current.value;
+    const checkedExposureTime =
+      exposureTime === "" ? 2000 : parseInt(exposureTime, 10);
 
-    if (setValidCheck(title, content, exposureTime)) {
+    if (setValidCheck(title, content, checkedExposureTime)) {
       toast.open({
         title,
         content,
-        exposureTime,
+        exposureTime: checkedExposureTime,
       });
     }
   };
